@@ -98,9 +98,17 @@
             font-size: 29px;
         }
 
+        .section-description {
+            color: #aab6ca;
+            margin-bottom: 22px;
+        }
+
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(
+                auto-fit,
+                minmax(240px, 1fr)
+            );
             gap: 18px;
         }
 
@@ -109,6 +117,7 @@
             background: #131e30;
             border: 1px solid #263247;
             border-radius: 12px;
+            min-width: 0;
         }
 
         .card h3 {
@@ -124,11 +133,22 @@
             color: #aab6ca;
         }
 
-        .warning {
-            border-left: 4px solid #f5c56b;
-            background: #211e19;
-            padding: 18px;
-            border-radius: 5px;
+        .screenshot {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin-top: 15px;
+            border-radius: 8px;
+            border: 1px solid #263247;
+        }
+
+        .image-link {
+            display: block;
+            text-decoration: none;
+        }
+
+        .image-link:hover {
+            opacity: 0.9;
         }
 
         .repo-link {
@@ -139,6 +159,13 @@
 
         .repo-link:hover {
             text-decoration: underline;
+        }
+
+        .warning {
+            border-left: 4px solid #f5c56b;
+            background: #211e19;
+            padding: 18px;
+            border-radius: 5px;
         }
 
         footer {
@@ -159,12 +186,17 @@
             .hero {
                 padding: 40px 5%;
             }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 
 <body>
 
+    <!-- Header -->
     <header>
         <div class="logo">AccuKnox Security Lab</div>
         <a href="#project">Project Overview</a>
@@ -205,6 +237,11 @@
 
             <h2>Project Overview</h2>
 
+            <p class="section-description">
+                A local Kubernetes security lab for learning web application
+                vulnerabilities, attack testing, and mitigation techniques.
+            </p>
+
             <div class="grid">
 
                 <article class="card">
@@ -217,15 +254,15 @@
                 <article class="card">
                     <h3>Kubernetes YAML</h3>
                     <p class="muted">
-                        Defines the example DVWA application and database resources.
+                        Defines example application and database resources.
                     </p>
                 </article>
 
                 <article class="card">
                     <h3>DVWA</h3>
                     <p class="muted">
-                        An intentionally vulnerable application for authorized
-                        security learning.
+                        An intentionally vulnerable web application used
+                        for authorized security learning.
                     </p>
                 </article>
 
@@ -238,6 +275,11 @@
 
             <h2>Attack Demonstrations</h2>
 
+            <p class="section-description">
+                Three application attack surfaces were demonstrated in
+                the local DVWA environment.
+            </p>
+
             <div class="grid">
 
                 <article class="card">
@@ -248,19 +290,21 @@
                     </p>
                     <p>
                         <strong>Mitigation:</strong>
-                        Parameterized queries and least-privilege database accounts.
+                        Use parameterized queries and least-privilege
+                        database accounts.
                     </p>
                 </article>
 
                 <article class="card">
                     <h3>02. Reflected XSS</h3>
                     <p class="muted">
-                        Demonstrates browser execution of untrusted input
-                        reflected in a response.
+                        Demonstrates how untrusted input reflected in a
+                        response can execute JavaScript in a browser.
                     </p>
                     <p>
                         <strong>Mitigation:</strong>
-                        Context-aware output encoding and input validation.
+                        Use context-aware output encoding and appropriate
+                        input validation.
                     </p>
                 </article>
 
@@ -272,9 +316,141 @@
                     </p>
                     <p>
                         <strong>Mitigation:</strong>
-                        Avoid shell commands where possible; use safe APIs
-                        and strict input validation.
+                        Avoid shell commands where possible, use safe APIs,
+                        and validate input.
                     </p>
+                </article>
+
+            </div>
+
+        </section>
+
+        <!-- Screenshots and Evidence -->
+        <section id="screenshots">
+
+            <h2>Screenshots and Evidence</h2>
+
+            <p class="section-description">
+                Evidence captured during the local DVWA Kubernetes
+                security lab demonstrations. Select an image to view it
+                at full size.
+            </p>
+
+            <div class="grid">
+
+                <!-- 1. Login Page -->
+                <article class="card">
+                    <h3>01. DVWA Login Page</h3>
+
+                    <p class="muted">
+                        Login page of the DVWA application.
+                    </p>
+
+                    <a
+                        class="image-link"
+                        href="screenshots/01-dvwa-loginpage.png"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <img
+                            class="screenshot"
+                            src="screenshots/01-dvwa-loginpage.png"
+                            alt="DVWA login page screenshot"
+                            loading="lazy"
+                        >
+                    </a>
+                </article>
+
+                <!-- 2. Home Page -->
+                <article class="card">
+                    <h3>02. DVWA Home Page</h3>
+
+                    <p class="muted">
+                        DVWA application home page after login.
+                    </p>
+
+                    <a
+                        class="image-link"
+                        href="screenshots/02-dvwa-home.png"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <img
+                            class="screenshot"
+                            src="screenshots/02-dvwa-home.png"
+                            alt="DVWA home page screenshot"
+                            loading="lazy"
+                        >
+                    </a>
+                </article>
+
+                <!-- 3. SQL Injection -->
+                <article class="card">
+                    <h3>03. SQL Injection</h3>
+
+                    <p class="muted">
+                        Evidence from the SQL injection demonstration.
+                    </p>
+
+                    <a
+                        class="image-link"
+                        href="screenshots/03-sql-injection.png"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <img
+                            class="screenshot"
+                            src="screenshots/03-sql-injection.png"
+                            alt="SQL injection demonstration screenshot"
+                            loading="lazy"
+                        >
+                    </a>
+                </article>
+
+                <!-- 4. Reflected XSS -->
+                <article class="card">
+                    <h3>04. Reflected XSS</h3>
+
+                    <p class="muted">
+                        Evidence from the reflected cross-site scripting test.
+                    </p>
+
+                    <a
+                        class="image-link"
+                        href="screenshots/04-reflected-xss.png"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <img
+                            class="screenshot"
+                            src="screenshots/04-reflected-xss.png"
+                            alt="Reflected XSS demonstration screenshot"
+                            loading="lazy"
+                        >
+                    </a>
+                </article>
+
+                <!-- 5. Command Injection -->
+                <article class="card">
+                    <h3>05. Command Injection</h3>
+
+                    <p class="muted">
+                        Evidence from the command injection demonstration.
+                    </p>
+
+                    <a
+                        class="image-link"
+                        href="screenshots/05-command-injection.png"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <img
+                            class="screenshot"
+                            src="screenshots/05-command-injection.png"
+                            alt="Command injection demonstration screenshot"
+                            loading="lazy"
+                        >
+                    </a>
                 </article>
 
             </div>
@@ -290,17 +466,19 @@
 
                 <p>
                     <strong>k8s/dvwa.example.yaml</strong> —
-                    Example Kubernetes configuration with placeholder credentials.
+                    Example Kubernetes configuration with placeholder
+                    database credentials.
                 </p>
 
                 <p>
                     <strong>screenshots/</strong> —
-                    Evidence captured during the three demonstrations.
+                    Login page, home page, and three attack demonstration images.
                 </p>
 
                 <p>
                     <strong>README.md</strong> —
-                    Project overview, setup, deployment, and cleanup instructions.
+                    Project overview, setup instructions, demonstrations,
+                    and security recommendations.
                 </p>
 
                 <p>
@@ -320,22 +498,25 @@
         </section>
 
         <!-- Safety Notice -->
-        <section>
+        <section id="safety">
 
             <div class="warning">
                 <strong>Safety Notice:</strong>
-                DVWA is intentionally vulnerable. Keep the application
-                on your local machine. Do not expose it directly to the
-                public internet or deploy it as a production service.
+                DVWA is intentionally vulnerable and is intended for
+                authorized security testing. Keep the application in an
+                isolated local environment. Do not expose the vulnerable
+                application directly to the public internet or use it
+                as a production service.
             </div>
 
         </section>
 
     </main>
 
+    <!-- Footer -->
     <footer>
         AccuKnox Security Lab | Kubernetes and Web Application Security
     </footer>
 
 </body>
-</html>                    
+</html>
