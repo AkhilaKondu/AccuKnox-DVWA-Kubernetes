@@ -1,0 +1,116 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: dvwa-db-secret
+type: Opaque
+stringData:
+  MYSQL_ROOT_PASSWORD: "REPLACE_WITH_YOUR_ROOT_PASSWORD"
+  MYSQL_PASSWORD: "REPLACE_WITH_YOUR_DVWA_PASSWORD"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: dvwa-db-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dvwa-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dvwa-db
+  template:
+    metadata:
+      labels:
+        app: dvwa-db
+    spec:
+      containers:
+        - name: mariadb
+          image: mariadb:10.11
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: dvwa-db-secret
+                  key: MYSQL_ROOT_PASSWORD
+            - name: MYSQL_DATABASE
+              value: dvwa
+            - name: MYSQL_USER
+              value: dvwa
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: dvwa-db-secret
+                  key: MYSQL_PASSWORD
+          volumeMounts:
+            - name: db-storage
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: db-storage
+          persistentVolumeClaim:
+            claimName: dvwa-db-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dvwa-db
+spec:
+  selector:
+    app: dvwa-db
+  ports:
+    - port: 3306
+      targetPort: 3306
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dvwa
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dvwa
+  template:
+    metadata:
+      labels:
+        app: dvwa
+    spec:
+      containers:
+        - name: dvwa
+          image: vulnerables/web-dvwa
+          ports:
+            - containerPort: 80
+          env:
+            - name: DB_SERVER
+              value: dvwa-db
+            - name: DB_DATABASE
+              value: dvwa
+            - name: DB_USER
+              value: dvwa
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: dvwa-db-secret
+                  key: MYSQL_PASSWORD
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dvwa
+spec:
+  type: ClusterIP
+  selector:
+    app: dvwa
+  ports:
+    - port: 80
+      targetPort: 80
