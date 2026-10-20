@@ -3,15 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>AccuKnox | DVWA Kubernetes Security Lab</title>
+
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             font-family: Arial, sans-serif;
             background: #0b1120;
             color: #e5e7eb;
             line-height: 1.7;
         }
+
         header {
             padding: 22px 8%;
             display: flex;
@@ -19,9 +27,23 @@
             align-items: center;
             border-bottom: 1px solid #263247;
         }
-        .logo { color: #62e6a7; font-size: 23px; font-weight: bold; }
-        header a { color: #e5e7eb; text-decoration: none; }
-        .hero { padding: 85px 8%; text-align: center; }
+
+        .logo {
+            color: #62e6a7;
+            font-size: 23px;
+            font-weight: bold;
+        }
+
+        header a {
+            color: #e5e7eb;
+            text-decoration: none;
+        }
+
+        .hero {
+            padding: 85px 8%;
+            text-align: center;
+        }
+
         .badge {
             color: #62e6a7;
             border: 1px solid #287d61;
@@ -30,9 +52,22 @@
             display: inline-block;
             margin-bottom: 20px;
         }
-        h1 { font-size: clamp(32px, 5vw, 55px); line-height: 1.2; }
-        h1 span { color: #62e6a7; }
-        .hero p { max-width: 750px; margin: 22px auto; color: #aab6ca; }
+
+        h1 {
+            font-size: clamp(32px, 5vw, 55px);
+            line-height: 1.2;
+        }
+
+        h1 span {
+            color: #62e6a7;
+        }
+
+        .hero p {
+            max-width: 750px;
+            margin: 22px auto;
+            color: #aab6ca;
+        }
+
         .button {
             display: inline-block;
             padding: 12px 22px;
@@ -43,121 +78,264 @@
             text-decoration: none;
             font-weight: bold;
         }
-        .secondary { background: transparent; color: #62e6a7; border: 1px solid #62e6a7; }
-        section { padding: 45px 8%; }
-        h2 { margin-bottom: 20px; font-size: 29px; }
+
+        .secondary {
+            background: transparent;
+            color: #62e6a7;
+            border: 1px solid #62e6a7;
+        }
+
+        .button:hover {
+            opacity: 0.85;
+        }
+
+        section {
+            padding: 45px 8%;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 29px;
+        }
+
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 18px;
         }
+
         .card {
             padding: 23px;
             background: #131e30;
             border: 1px solid #263247;
             border-radius: 12px;
         }
-        .card h3 { color: #62e6a7; margin-bottom: 10px; }
-        .muted { color: #aab6ca; }
+
+        .card h3 {
+            color: #62e6a7;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            margin-bottom: 10px;
+        }
+
+        .muted {
+            color: #aab6ca;
+        }
+
         .warning {
             border-left: 4px solid #f5c56b;
             background: #211e19;
             padding: 18px;
             border-radius: 5px;
         }
+
+        .repo-link {
+            color: #62e6a7;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .repo-link:hover {
+            text-decoration: underline;
+        }
+
         footer {
             text-align: center;
             border-top: 1px solid #263247;
             padding: 25px;
             color: #aab6ca;
         }
+
         @media (max-width: 600px) {
-            header { padding: 18px 5%; }
-            section, .hero { padding: 40px 5%; }
+            header {
+                padding: 18px 5%;
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+
+            section,
+            .hero {
+                padding: 40px 5%;
+            }
         }
     </style>
 </head>
+
 <body>
+
     <header>
         <div class="logo">AccuKnox Security Lab</div>
         <a href="#project">Project Overview</a>
     </header>
 
     <main>
+
+        <!-- Hero Section -->
         <section class="hero">
+
             <div class="badge">Kubernetes Security Project</div>
+
             <h1>DVWA on <span>Kubernetes</span></h1>
+
             <p>
                 A hands-on security lab demonstrating common web application
                 vulnerabilities in a local Minikube cluster, with deployment
                 configuration, attack evidence, and security recommendations.
             </p>
-            <a class="button" href="#demonstrations">Explore Demonstrations</a>
-            <a class="button secondary"
-               href="https://<a href="https://github.com/AkhilaKondu/AccuKnox-DVWA-Kubernetes" target="_blank" rel="noopener noreferrer">GitHub Source Code</a>github.com/"
-               target="_blank" rel="noopener noreferrer">GitHub Source Code</a>
+
+            <a class="button" href="#demonstrations">
+                Explore Demonstrations
+            </a>
+
+            <a
+                class="button secondary"
+                href="https://github.com/AkhilaKondu/AccuKnox-DVWA-Kubernetes"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                GitHub Source Code
+            </a>
+
         </section>
 
+        <!-- Project Overview -->
         <section id="project">
+
             <h2>Project Overview</h2>
+
             <div class="grid">
+
                 <article class="card">
                     <h3>Minikube</h3>
-                    <p class="muted">Runs a local Kubernetes cluster for the security lab.</p>
+                    <p class="muted">
+                        Runs a local Kubernetes cluster for the security lab.
+                    </p>
                 </article>
+
                 <article class="card">
                     <h3>Kubernetes YAML</h3>
-                    <p class="muted">Defines the DVWA application and database resources.</p>
+                    <p class="muted">
+                        Defines the example DVWA application and database resources.
+                    </p>
                 </article>
+
                 <article class="card">
                     <h3>DVWA</h3>
-                    <p class="muted">An intentionally vulnerable application for authorized security learning.</p>
+                    <p class="muted">
+                        An intentionally vulnerable application for authorized
+                        security learning.
+                    </p>
                 </article>
+
             </div>
+
         </section>
 
+        <!-- Attack Demonstrations -->
         <section id="demonstrations">
+
             <h2>Attack Demonstrations</h2>
+
             <div class="grid">
+
                 <article class="card">
                     <h3>01. SQL Injection</h3>
-                    <p class="muted">Demonstrates how unsafe SQL query construction can expose unintended database records.</p>
-                    <p><strong>Mitigation:</strong> Parameterized queries and least-privilege database accounts.</p>
+                    <p class="muted">
+                        Demonstrates how unsafe SQL query construction can
+                        expose unintended database records.
+                    </p>
+                    <p>
+                        <strong>Mitigation:</strong>
+                        Parameterized queries and least-privilege database accounts.
+                    </p>
                 </article>
+
                 <article class="card">
                     <h3>02. Reflected XSS</h3>
-                    <p class="muted">Demonstrates browser execution of untrusted input reflected in a response.</p>
-                    <p><strong>Mitigation:</strong> Context-aware output encoding and input validation.</p>
+                    <p class="muted">
+                        Demonstrates browser execution of untrusted input
+                        reflected in a response.
+                    </p>
+                    <p>
+                        <strong>Mitigation:</strong>
+                        Context-aware output encoding and input validation.
+                    </p>
                 </article>
+
                 <article class="card">
                     <h3>03. Command Injection</h3>
-                    <p class="muted">Demonstrates how unsafe operating-system command construction can execute unintended commands.</p>
-                    <p><strong>Mitigation:</strong> Avoid shell commands where possible; use safe APIs and strict input validation.</p>
+                    <p class="muted">
+                        Demonstrates how unsafe operating-system command
+                        construction can execute unintended commands.
+                    </p>
+                    <p>
+                        <strong>Mitigation:</strong>
+                        Avoid shell commands where possible; use safe APIs
+                        and strict input validation.
+                    </p>
                 </article>
+
             </div>
+
         </section>
 
-        <section>
+        <!-- Project Files -->
+        <section id="files">
+
             <h2>Project Files</h2>
+
             <div class="card">
-                <p><strong>k8s/dvwa.yaml</strong> — Kubernetes resources for deployment.</p>
-                <p><strong>screenshots/</strong> — Evidence captured during the three demonstrations.</p>
-                <p><strong>README.md</strong> — Setup, deployment, testing, and cleanup instructions.</p>
-                <p class="muted">The repository link will be connected after the project is published to GitHub.</p>
+
+                <p>
+                    <strong>k8s/dvwa.example.yaml</strong> —
+                    Example Kubernetes configuration with placeholder credentials.
+                </p>
+
+                <p>
+                    <strong>screenshots/</strong> —
+                    Evidence captured during the three demonstrations.
+                </p>
+
+                <p>
+                    <strong>README.md</strong> —
+                    Project overview, setup, deployment, and cleanup instructions.
+                </p>
+
+                <p>
+                    <strong>GitHub Repository:</strong>
+                    <a
+                        class="repo-link"
+                        href="https://github.com/AkhilaKondu/AccuKnox-DVWA-Kubernetes"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        View Source Code
+                    </a>
+                </p>
+
             </div>
+
         </section>
 
+        <!-- Safety Notice -->
         <section>
+
             <div class="warning">
-                <strong>Safety notice:</strong> DVWA is intentionally vulnerable.
-                Keep the application on your local machine. Do not expose it
-                directly to the public internet or deploy it as a production service.
+                <strong>Safety Notice:</strong>
+                DVWA is intentionally vulnerable. Keep the application
+                on your local machine. Do not expose it directly to the
+                public internet or deploy it as a production service.
             </div>
+
         </section>
+
     </main>
 
     <footer>
         AccuKnox Security Lab | Kubernetes and Web Application Security
     </footer>
+
 </body>
-</html>
+</html>                    
